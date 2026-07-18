@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sweet Delights – Bakery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+  <div class="nav-logo">Sweet Delights</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="cart-btn" onclick="toggleCart()">
+    🛒 Cart <span class="cart-count" id="cart-count">0</span>
+  </button>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#home" onclick="toggleMobileMenu()">Home</a>
+  <a href="#menu" onclick="toggleMobileMenu()">Menu</a>
+  <a href="#about" onclick="toggleMobileMenu()">About</a>
+  <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+</div>
+
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>Your Order</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p class="cart-empty">Your cart is empty.</p>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">Total: <span id="cart-total">Rs0.00</span></div>
+    <button class="checkout-btn" onclick="checkout()">Place Order</button>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Fresh · Homemade · Weekly</span>
+    <h1>Baked with <em>love</em>,<br>every morning on weekends.</h1>
+    <p>sweets, pastries & cakes — made from scratch using traditional recipes and the finest ingredients.</p>
+    <a href="#menu" class="btn-primary">Explore Our Menu</a>
+  </div>
+  <div class="hero-image">
+    <div class="hero-circle"></div>
+    <div class="floating-badge">Est. 2023</div>
+  </div>
+</section>
+
+
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-header">
+    <span class="section-tag">Our Menu</span>
+    <h2>Freshly Baked Goods</h2>
+    <p>Order online and pick up in store — or we'll deliver to your door.</p>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="tab active" onclick="filterMenu('all', this)">All</button>
+    <button class="tab" onclick="filterMenu('Srilankan Savouries', this)">Srilankan Savouries</button>
+    <button class="tab" onclick="filterMenu('sweets & Pastries', this)">sweets & Pastries</button>
+    <button class="tab" onclick="filterMenu('cake', this)">Cakes</button>
+    <button class="tab" onclick="filterMenu('special', this)">Specials</button>
+  </div>
+
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <span class="section-tag">Our Story</span>
+    <h2>A family tradition since 2023</h2>
+    <h2>Baked with love,<br><em>served with joy</em></h2>
+    <p>We source our flour from local mills, use no artificial preservatives, and bake in small batches so everything is always fresh.</p>
+    <div class="about-stats">
+      <div><strong>3+</strong><span>Years baking</span></div>
+      <div><strong>10+</strong><span>Products daily</span></div>
+      <div><strong>100+</strong><span>Happy customers</span></div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-card card1">🌾 Stone-ground flour</div>
+    <div class="about-card card2">🧈 Fresh local butter</div>
+    <div class="about-card card3">⏰ Baked before 7am</div>
+    <div class="about-decor"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <span class="section-tag">Reviews</span>
+    <h2>What our customers say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p>"The sourdough is incredible — crusty outside, perfectly chewy inside. I order every single week."</p>
+      <strong>— Amara S.</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"Their croissants are the best I've had outside of Paris. Flaky, buttery perfection every time."</p>
+      <strong>— Rohan K.</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"Ordered a custom birthday cake and it was absolutely stunning. Tasted even better than it looked!"</p>
+      <strong>— Dilani P.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <span class="section-tag">Find Us</span>
+    <h2>Visit or Order Online</h2>
+    <p>📍 42 Bakery Lane, Colombo 03, Sri Lanka</p>
+    <p>📞 +94 77 123 4567</p>
+    <p>📧 hello@sweetdelights.lk</p>
+    <p>🕖 Mon–Sat: 6:00 AM – 7:00 PM</p>
+    <p>🕖 Sun: 7:00 AM – 3:00 PM</p>
+  </div>
+  <form class="contact-form" onsubmit="submitForm(event)">
+    <h3>Send us a message</h3>
+    <input type="text" placeholder="Your name" required />
+    <input type="email" placeholder="Your email" required />
+    <textarea rows="4" placeholder="Message or custom order request..."></textarea>
+    <button type="submit" class="btn-primary">Send Message</button>
+    <p class="form-success" id="form-success">✅ Message sent! We'll reply soon.</p>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">La Farine</div>
+  <p>Handcrafted with ❤️ every morning in Colombo.</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2026 Sweet Delights Bakery. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
